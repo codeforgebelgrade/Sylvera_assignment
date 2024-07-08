@@ -1,20 +1,28 @@
 from pydantic import BaseModel
 from typing import Optional
 
-class WeatherData(BaseModel):
+class WeatherDataModel(BaseModel):
     temperature: int
     humidity: float
     wind_speed: Optional[float] 
 
-class TrafficData(BaseModel):
+class TrafficDataModel(BaseModel):
     average_speed: float
     traffic_density: list[float]
     incident_reports: Optional[int]
 
-class RoadConditionsData(BaseModel):
+class RoadConditionsDataModel(BaseModel):
     road_quality: int
     lighting_conditions: int
     accident_history: int
+    traffic_density: list[float]
+    average_speed: float
+    incident_reports: Optional[int]
+    wind_speed: Optional[float]
+
+class OverallCommuteQualityModel(BaseModel):
+    overall_commute_quality_score: float
+    overall_commute_quality: str
 
 class WeatherDataOutput(BaseModel):
     comfort_index: float
