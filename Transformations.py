@@ -1,6 +1,4 @@
-import statistics
 from JSON_models import *
-from pydantic import BaseModel
 
 def calculate_comfot_index(weather_data: WeatherDataModel):
     score = (100 - weather_data.humidity) + (30 - weather_data.temperature)
