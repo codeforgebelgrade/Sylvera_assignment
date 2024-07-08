@@ -4,7 +4,7 @@ def calculate_comfot_index(weather_data: WeatherDataModel):
     score = (100 - weather_data.humidity) + (30 - weather_data.temperature)
     
     if weather_data.wind_speed != None:
-        score = score + weather_data.wind_speed/2
+        score += (weather_data.wind_speed/2)
     
     weather_output = WeatherDataOutput(comfort_index = score)
     return weather_output
@@ -12,7 +12,7 @@ def calculate_comfot_index(weather_data: WeatherDataModel):
 def calculate_traffic_efficiency_flow(traffic_data: TrafficDataModel):
     score = traffic_data.average_speed / (sum(traffic_data.traffic_density) + 1)
     if traffic_data.incident_reports != None:
-        score = score - (2 * traffic_data.incident_reports)
+        score -= (2 * traffic_data.incident_reports)
 
     traffic_efficiency_output = TrafficEfficiencyOutput(traffic_efficiency_flow=score)
     return traffic_efficiency_output
@@ -20,13 +20,13 @@ def calculate_traffic_efficiency_flow(traffic_data: TrafficDataModel):
 def calculate_safety_score(weather_data: WeatherDataModel, traffic_data: TrafficDataModel, road_conditions_data: RoadConditionsDataModel):
     inverse_score = 1/sum(traffic_data.traffic_density)
     score = road_conditions_data.road_quality * (1/road_conditions_data.accident_history + 1)
-    score = score + (road_conditions_data.lighting_conditions * road_conditions_data.average_speed)
+    score += (road_conditions_data.lighting_conditions * road_conditions_data.average_speed)
     
     if road_conditions_data.incident_reports != None:
-        score - road_conditions_data.incident_reports
+        score -= road_conditions_data.incident_reports
 
     if weather_data.wind_speed != None:
-        score - weather_data.wind_speed
+        score -= weather_data.wind_speed
 
     safety_score_output = SafetyScoreOutput(safety_score = score)
     return safety_score_output
