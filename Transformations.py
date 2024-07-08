@@ -45,7 +45,8 @@ def __resolve_descriptive_value(overall_quality_score):
         return "Average"
     elif overall_quality_score > 50:
         return "Good"
-    
+
+ #Applies the transformations and calculates the overall commute quality   
 def apply_transformations(weather_data_model, traffic_data_model, road_conditions_model):
     weather_output = calculate_comfot_index(weather_data_model)
     print(weather_output.comfort_index)
