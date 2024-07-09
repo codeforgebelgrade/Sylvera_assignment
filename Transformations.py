@@ -18,8 +18,8 @@ def calculate_traffic_efficiency_flow(traffic_data: TrafficDataModel):
     return traffic_efficiency_output
 
 def calculate_safety_score(weather_data: WeatherDataModel, traffic_data: TrafficDataModel, road_conditions_data: RoadConditionsDataModel):
-    inverse_score = 1/sum(traffic_data.traffic_density)
-    score = road_conditions_data.road_quality * (1/road_conditions_data.accident_history + 1)
+    score = 1/sum(traffic_data.traffic_density)
+    score += road_conditions_data.road_quality * (1/road_conditions_data.accident_history + 1)
     score += (road_conditions_data.lighting_conditions * road_conditions_data.average_speed)
     
     if road_conditions_data.incident_reports != None:
@@ -49,13 +49,8 @@ def __resolve_descriptive_value(overall_quality_score):
  #Applies the transformations and calculates the overall commute quality   
 def apply_transformations(weather_data_model, traffic_data_model, road_conditions_model):
     weather_output = calculate_comfot_index(weather_data_model)
-    print(weather_output.comfort_index)
-
     traffic_output = calculate_traffic_efficiency_flow(traffic_data_model)
-    print(traffic_output.traffic_efficiency_flow)
-
     safety_score_output = calculate_safety_score(weather_data_model, traffic_data_model, road_conditions_model)
-    print(safety_score_output.safety_score)
 
     overall_commute_quality = calculate_overall_commute_quality(weather_output.comfort_index, traffic_output.traffic_efficiency_flow, safety_score_output.safety_score)
     print("Overall commute quality: ", overall_commute_quality.model_dump())
