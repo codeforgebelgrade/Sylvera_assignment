@@ -22,5 +22,5 @@ try:
 except ValidationError as e:
     print(e.errors())
 except json.JSONDecodeError as e:
-    print("Invalid JSON object submitted as an argument")
+    print("Invalid JSON object submitted!")
 
