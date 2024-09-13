@@ -15,5 +15,6 @@ Some ideas for improvement:
 - Better excaption handling
 - Better interface
 - Ruuning the application as a service that exposes REST interface (so it can be called remotely if needed)
+- Adding poetry file
 
 **Note**: The code was written using Python 3.12.4 on Windows 11 machine in VS Code.  
